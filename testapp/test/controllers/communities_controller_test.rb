@@ -3,6 +3,7 @@ require 'test_helper'
 class CommunitiesControllerTest < ActionController::TestCase
   setup do
     @community = communities(:one)
+    @update = {name: 'Community X'}
   end
 
   test "should get index" do
@@ -18,7 +19,7 @@ class CommunitiesControllerTest < ActionController::TestCase
 
   test "should create community" do
     assert_difference('Community.count') do
-      post :create, community: { name: @community.name }
+      post :create, community: @update
     end
 
     assert_redirected_to community_path(assigns(:community))
@@ -35,7 +36,7 @@ class CommunitiesControllerTest < ActionController::TestCase
   end
 
   test "should update community" do
-    patch :update, id: @community, community: { name: @community.name }
+    patch :update, id: @community, community: @update
     assert_redirected_to community_path(assigns(:community))
   end
 
